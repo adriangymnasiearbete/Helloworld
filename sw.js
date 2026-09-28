@@ -1,10 +1,12 @@
 const CACHE_NAME = "hello-world-v1";
 
 const FILES_TO_CACHE = [
-    "./",
-    "./index.html",
-    "./style.css"
+  "./",
+  "./helloworld.html",
+  "./icon512.png",
+  "./mypwa.json"
 ];
+
 
 self.addEventListener("install", event => {
     event.waitUntil(

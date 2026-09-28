@@ -20,12 +20,17 @@
   </main>
 
 
-  <script>
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("sw.js")
-        .then(() => console.log("Service Worker registered!"))
-        .catch(error => console.log("Service Worker failed:", error));
-    }
-  </script>
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("./sw.js")
+      .then(registration => {
+        console.log("Service Worker registered:", registration);
+      })
+      .catch(error => {
+        console.error("Service Worker failed:", error);
+      });
+  }
+</script>
+
 </body>
 </html>

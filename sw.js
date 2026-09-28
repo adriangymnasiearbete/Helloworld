@@ -7,29 +7,36 @@ const FILES_TO_CACHE = [
   "./mypwa.json"
 ];
 
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then((cache) => {
+        console.log("Opening cache:", CACHE_NAME);
 
-self.addEventListener("install", event => {
-    event.waitUntil(
-        caches.open(CACHE_NAME)
-            .then(cache => cache.addAll(FILES_TO_CACHE))
-    );
-});
-
-self.addEventListener("fetch", event => {
-    event.respondWith(
-        caches.match(event.request)
-            .then(response => response || fetch(event.request))
-    );
-});
-
-self.addEventListener("install", () => {
-  self.skipWaiting();
+        return cache.addAll(FILES_TO_CACHE);
+      })
+      .then(() => {
+        console.log("All files cached!");
+        return self.skipWaiting();
+      })
+      .catch((error) => {
+        console.error("CACHE FAILED:", error);
+        throw error;
+      })
+  );
 });
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    (async () => {
-      await clients.claim();
-    })()
+    clients.claim()
+  );
+});
+
+self.addEventListener("fetch", (event) => {
+  event.respondWith(
+    caches.match(event.request)
+      .then((response) => {
+        return response || fetch(event.request);
+      })
   );
 });

@@ -2,35 +2,42 @@
 <html lang="en">
 <head>
   <title>Hello World</title>
+
   <meta name="description" content="A simple and fast Progressive Web App.">
-  <link rel="manifest" href="mypwa.json">
+
+  <link rel="manifest" href="/Helloworld/mypwa.json">
 
   <style>
     h1 {
       color: magenta;
       font-size: 5vw;
-      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode',
+                   'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     }
   </style>
 </head>
 
 <body>
   <main>
-     <h1> Hello World!</h1>
+    <h1>Hello World!</h1>
   </main>
 
-
-<script>
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("./sw.js")
-      .then(registration => {
-        console.log("Service Worker registered:", registration);
-      })
-      .catch(error => {
-        console.error("Service Worker failed:", error);
-      });
-  }
-</script>
-
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/Helloworld/sw.js")
+        .then(registration => {
+          console.log(
+            "Service Worker registered:",
+            registration.scope
+          );
+        })
+        .catch(error => {
+          console.error(
+            "Service Worker failed:",
+            error
+          );
+        });
+    }
+  </script>
 </body>
 </html>

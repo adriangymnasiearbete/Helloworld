@@ -35,6 +35,10 @@ self.addEventListener("fetch", event => {
         return cachedResponse;
       }
 
+      if (event.request.url.endsWith("/Helloworld/helloworld")) {
+        return caches.match("./helloworld.html");
+      }
+
       return fetch(event.request);
     })
   );

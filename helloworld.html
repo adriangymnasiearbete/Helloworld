@@ -32,6 +32,33 @@
       });
     }
   </script>
+  <script>
+    const startCaptureButton = document.getElementById("startCapture");
 
+    startCaptureButton.addEventListener("click", async () => {
+      try {
+        const stream = await navigator.mediaDevices.getDisplayMedia({
+          video: true,
+          audio: true
+        });
+
+        console.log("Screen capture started!");
+
+        const video = document.createElement("video");
+        video.srcObject = stream;
+        video.autoplay = true;
+        video.controls = true;
+        video.style.width = "80%";
+        video.style.display = "block";
+        video.style.marginTop = "20px";
+
+        document.body.appendChild(video);
+
+      } catch (error) {
+        console.error("Screen capture failed:", error);
+      }
+    });
+  </script>
+  
 </body>
 </html>

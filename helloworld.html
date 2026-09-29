@@ -22,22 +22,6 @@
     <h1>Hello World!</h1>
   </main>
 
-  <script>
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/Helloworld/sw.js")
-        .then(registration => {
-          console.log(
-            "Service Worker registered:",
-            registration.scope
-          );
-        })
-        .catch(error => {
-          console.error(
-            "Service Worker failed:",
-            error
-          );
-        });
-    }
-  </script>
+  
 </body>
 </html>
